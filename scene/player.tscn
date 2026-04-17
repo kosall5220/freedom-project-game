@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://rsbddoe61xw"]
+[gd_scene load_steps=57 format=3 uid="uid://rsbddoe61xw"]
 
 [ext_resource type="Script" uid="uid://bafc68mwhn7kf" path="res://scripts/player.gd" id="1_hjaqi"]
 [ext_resource type="Texture2D" uid="uid://cigss2fv7kor2" path="res://mystic_woods_free_2.1/sprites/characters/player.png" id="2_fvtld"]
@@ -416,6 +416,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_s4jxa"]
 radius = 6.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_hjaqi"]
+radius = 11.0
+
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_hjaqi")
 
@@ -430,3 +433,16 @@ animation = &"frontgrab"
 y_sort_enabled = true
 position = Vector2(3, 13)
 shape = SubResource("CircleShape2D_s4jxa")
+
+[node name="playerhitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="playerhitbox"]
+position = Vector2(2, 9)
+shape = SubResource("CircleShape2D_hjaqi")
+
+[node name="attack_cooldown" type="Timer" parent="."]
+wait_time = 0.584
+
+[connection signal="body_entered" from="playerhitbox" to="." method="_on_playerhitbox_body_entered"]
+[connection signal="body_exited" from="playerhitbox" to="." method="_on_playerhitbox_body_exited"]
+[connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
