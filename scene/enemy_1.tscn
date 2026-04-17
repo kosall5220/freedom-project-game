@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://bugs7d3drarc3"]
+
+[ext_resource type="Script" uid="uid://c5vtnne4st3sv" path="res://enemy_1.gd" id="1_uivv5"]
+[ext_resource type="Texture2D" uid="uid://dgd3i7hkk00d1" path="res://icon.svg" id="2_jhall"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uivv5"]
+radius = 80.00625
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dodob"]
+radius = 13.038404
+
+[node name="enemy1" type="CharacterBody2D"]
+script = ExtResource("1_uivv5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -1.1444092e-05)
+scale = Vector2(0.2265625, 0.21875003)
+texture = ExtResource("2_jhall")
+
+[node name="Area2D" type="Area2D" parent="."]
+y_sort_enabled = true
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_uivv5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_dodob")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
