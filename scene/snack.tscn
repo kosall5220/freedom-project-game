@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dgrdxbc3583i2"]
+
+[ext_resource type="Script" uid="uid://rbw7umr4ptfo" path="res://scripts/snack.gd" id="1_wpjok"]
+[ext_resource type="Texture2D" uid="uid://cu5gkbta4wh5e" path="res://models/mystic_woods_free_2.1/sprites/tilesets/grass.png" id="2_hga4s"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ajr36"]
+radius = 12.0415945
+
+[node name="snack" type="Area2D"]
+script = ExtResource("1_wpjok")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-22, 21)
+shape = SubResource("CircleShape2D_ajr36")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-22, 21)
+scale = Vector2(0.8750005, 0.871094)
+texture = ExtResource("2_hga4s")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -4,8 +4,10 @@ var enemy_inattack_range = false
 var enemy_attack_cooldown = true
 var health = 100
 var player_alive = true
-
+var coin_counter = 0
 var attack_ip = false
+
+@onready var coin_label = %Label
 
 const SPEED = 100
 var current_dir = "none"
@@ -16,6 +18,7 @@ func _ready():
 func _physics_process(delta):
 	player_movement(delta)
 	enemy_attack()
+	attack()
 	
 	if health <= 0:
 		player_alive = false
@@ -109,8 +112,49 @@ func enemy_attack():
 		health = health - 10
 		enemy_attack_cooldown = false
 		$attack_cooldown.start()
-		print(health)
+		print("Player Health = ", health)
 
 
 func _on_attack_cooldown_timeout() -> void:
 	enemy_attack_cooldown = true
+
+func attack():
+	var dir = current_dir
+	
+	if Input.is_action_just_pressed("attack"):
+		global.player_current_attack = true
+		attack_ip = true
+		
+		if dir == "right":
+			$AnimatedSprite2D.flip_h = false
+			$AnimatedSprite2D.play("sidegrab")
+			$damage_cooldown.start()
+			
+		if dir == "left":
+			$AnimatedSprite2D.flip_h = true
+			$AnimatedSprite2D.play("sidegrab")
+			$damage_cooldown.start()
+			
+		if dir == "down":
+			$AnimatedSprite2D.play("frontgrab")
+			$damage_cooldown.start()
+			
+		if dir == "up":
+			$AnimatedSprite2D.play("backgrab")
+			$damage_cooldown.start()
+			
+func _on_damage_cooldown():
+	$damage_cooldown.stop()
+	global.player_current_attack = false
+	attack_ip = false
+	
+
+
+func _on_playerhitbox_area_entered(body: Node2D) -> void:
+	if body.has_method("snack"):
+		set_count(coin_counter + 1)
+		print(coin_counter)
+
+func set_count(new_coin_count: int) -> void:
+	coin_counter = new_coin_count
+	coin_label.text = "Score: " + str(coin_counter)

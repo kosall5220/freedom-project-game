@@ -1,15 +1,29 @@
-[gd_scene load_steps=4 format=3 uid="uid://csjfuqk2uy5r8"]
+[gd_scene load_steps=5 format=3 uid="uid://csjfuqk2uy5r8"]
 
 [ext_resource type="PackedScene" uid="uid://by6h042cn7qn7" path="res://scene/world.tscn" id="1_ppd22"]
 [ext_resource type="PackedScene" uid="uid://rsbddoe61xw" path="res://scene/player.tscn" id="2_3cebx"]
 [ext_resource type="PackedScene" uid="uid://bugs7d3drarc3" path="res://scene/enemy_1.tscn" id="3_tytcy"]
+[ext_resource type="PackedScene" uid="uid://dgrdxbc3583i2" path="res://scene/snack.tscn" id="4_3cebx"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="world" parent="." instance=ExtResource("1_ppd22")]
 
 [node name="player" parent="." instance=ExtResource("2_3cebx")]
-position = Vector2(-34, 176)
+position = Vector2(-42, 271)
+
+[node name="Camera2D2" type="Camera2D" parent="player"]
+
+[node name="Label" type="Label" parent="player/Camera2D2"]
+unique_name_in_owner = true
+offset_left = -135.0
+offset_top = -75.0
+offset_right = -70.0
+offset_bottom = -52.0
+text = "Score : 0"
 
 [node name="enemy1" parent="." instance=ExtResource("3_tytcy")]
 position = Vector2(111, 173)
+
+[node name="snack" parent="." instance=ExtResource("4_3cebx")]
+position = Vector2(5, 86)

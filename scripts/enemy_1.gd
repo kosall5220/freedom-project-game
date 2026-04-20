@@ -1,11 +1,12 @@
 extends CharacterBody2D
 
-var speed = 45
+var speed = 110
 var player_chase = false
 var player = null
 
 var health = 100
 var player_inattack_zone = false
+var can_take_damage = true
 
 func _physics_process(delta):
 	deal_with_damage()
@@ -38,7 +39,13 @@ func _on_enemyhitbox_body_exited(body: Node2D) -> void:
 		
 func deal_with_damage():
 	if player_inattack_zone and global.player_current_attack == true:
-		health = health - 20
-		print("enemy health = ", health)
-		if health <= 0:
-			self.queue_free()
+		if can_take_damage == true:
+			health = health - 15
+			$take_damage_cooldown.start()
+			can_take_damage = false
+			print("enemy health = ", health)
+			if health <= 0:
+				self.queue_free()
+
+func _on_take_damage_cooldown_timeout() -> void:
+	can_take_damage = true
