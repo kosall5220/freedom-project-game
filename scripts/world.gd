@@ -9,7 +9,7 @@ func _ready() -> void:
 
 func _on_spawntimer_timeout() -> void:
 	var b
-	b = coins.instantiate()
+	b = scene.instantiate()
 	b.global_position = %Marker2D.position
 	add_child(b)
 	time.start()

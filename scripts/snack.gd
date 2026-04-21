@@ -5,4 +5,5 @@ func snack():
 	
 
 func _on_area_entered(area: Area2D) -> void:
-	queue_free()
+	if area.has_method("player"):
+		queue_free()
