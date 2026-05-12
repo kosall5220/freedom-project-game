@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://k5qn0jaqeljk" path="res://models/Clothes_snacks Asset Pack/health items.png" id="2_0227k"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ajr36"]
-radius = 12.0415945
+radius = 8.246211
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gyb6e"]
 atlas = ExtResource("2_0227k")
@@ -29,6 +29,8 @@ position = Vector2(-1, 0)
 shape = SubResource("CircleShape2D_ajr36")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, -1)
+scale = Vector2(0.42187503, 0.39843753)
 sprite_frames = SubResource("SpriteFrames_grass")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

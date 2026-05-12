@@ -441,13 +441,15 @@ radius = 5.0
 radius = 15.0
 
 [node name="player" type="CharacterBody2D"]
+light_mask = 7
+visibility_layer = 7
+z_index = 2
 script = ExtResource("1_hjaqi")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(3, 1)
 sprite_frames = SubResource("SpriteFrames_ct4mp")
 animation = &"idle"
-frame_progress = 0.88056475
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
@@ -457,6 +459,7 @@ shape = SubResource("CircleShape2D_s4jxa")
 [node name="playerhitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="playerhitbox"]
+visible = false
 position = Vector2(3, 10)
 shape = SubResource("CircleShape2D_hjaqi")
 
@@ -466,7 +469,19 @@ wait_time = 0.5
 [node name="damage_cooldown" type="Timer" parent="."]
 wait_time = 0.5
 
+[node name="healthbar" type="ProgressBar" parent="."]
+modulate = Color(0.6202223, 0.91957724, 0.5488689, 1)
+offset_left = -6.0000005
+offset_top = 21.0
+offset_right = 183.99997
+offset_bottom = 48.0
+scale = Vector2(0.1, 0.1)
+show_percentage = false
+
+[node name="regin_timer" type="Timer" parent="."]
+
 [connection signal="area_entered" from="playerhitbox" to="." method="_on_playerhitbox_area_entered"]
 [connection signal="body_entered" from="playerhitbox" to="." method="_on_playerhitbox_body_entered"]
 [connection signal="body_exited" from="playerhitbox" to="." method="_on_playerhitbox_body_exited"]
 [connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="timeout" from="regin_timer" to="." method="_on_regin_timer_timeout"]

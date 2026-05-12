@@ -1,10 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bugs7d3drarc3"]
+[gd_scene load_steps=11 format=3 uid="uid://bugs7d3drarc3"]
 
 [ext_resource type="Script" uid="uid://c5vtnne4st3sv" path="res://scripts/enemy_1.gd" id="1_uivv5"]
-[ext_resource type="Texture2D" uid="uid://dgd3i7hkk00d1" path="res://icon.svg" id="2_jhall"]
+[ext_resource type="Texture2D" uid="uid://dk6posvxaxrvd" path="res://models/PixelRats_Free_Carysaurus/Rat-LightGrey-Walk.png" id="2_uivv5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uivv5"]
-radius = 59.03389
+radius = 79.00633
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dodob"]
 radius = 13.038404
@@ -12,13 +12,44 @@ radius = 13.038404
 [sub_resource type="CircleShape2D" id="CircleShape2D_jhall"]
 radius = 22.090721
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_uivv5"]
+atlas = ExtResource("2_uivv5")
+region = Rect2(0, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jhall"]
+atlas = ExtResource("2_uivv5")
+region = Rect2(32, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7q5a"]
+atlas = ExtResource("2_uivv5")
+region = Rect2(64, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dodob"]
+atlas = ExtResource("2_uivv5")
+region = Rect2(96, 16, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cbj0a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uivv5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jhall")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a7q5a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dodob")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="enemy1" type="CharacterBody2D"]
 script = ExtResource("1_uivv5")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -1.1444092e-05)
-scale = Vector2(0.2265625, 0.21875003)
-texture = ExtResource("2_jhall")
 
 [node name="Area2D" type="Area2D" parent="."]
 y_sort_enabled = true
@@ -38,6 +69,9 @@ shape = SubResource("CircleShape2D_jhall")
 
 [node name="take_damage_cooldown" type="Timer" parent="."]
 wait_time = 0.5
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_cbj0a")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
