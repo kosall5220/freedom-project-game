@@ -15,9 +15,9 @@ func _on_spawntimer_timeout() -> void:
 	time.start()
 
 
-#func _on_coinspawn_timeout() -> void:
-	#var b
-	#b = coins.instantiate()
-	#b.global_position = %Marker2D2.position
-	#add_child(b)
-	#time.start()
+func _on_coinspawn_timeout() -> void:
+	var b
+	b = coins.instantiate()
+	b.global_position = %Marker2D2.position
+	add_child(b)
+	time.start()

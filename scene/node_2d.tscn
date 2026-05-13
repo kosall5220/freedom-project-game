@@ -1,19 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://csjfuqk2uy5r8"]
+[gd_scene load_steps=8 format=3 uid="uid://csjfuqk2uy5r8"]
 
 [ext_resource type="PackedScene" uid="uid://by6h042cn7qn7" path="res://scene/world.tscn" id="1_ppd22"]
+[ext_resource type="Script" uid="uid://if1v3yrgvmh5" path="res://scene/node_2d.gd" id="1_tytcy"]
 [ext_resource type="PackedScene" uid="uid://rsbddoe61xw" path="res://scene/player.tscn" id="2_3cebx"]
 [ext_resource type="PackedScene" uid="uid://bugs7d3drarc3" path="res://scene/enemy_1.tscn" id="3_tytcy"]
 [ext_resource type="PackedScene" uid="uid://dgrdxbc3583i2" path="res://scene/snack.tscn" id="4_3cebx"]
+[ext_resource type="PackedScene" uid="uid://bch5eb7dmt8h3" path="res://scene/node.tscn" id="6_462ap"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3cebx"]
 font_size = 9
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_tytcy")
 
 [node name="world" parent="." instance=ExtResource("1_ppd22")]
 
 [node name="player" parent="." instance=ExtResource("2_3cebx")]
-position = Vector2(-42, 271)
+position = Vector2(-43, 298)
 
 [node name="Camera2D2" type="Camera2D" parent="player"]
 
@@ -25,6 +28,7 @@ offset_top = -75.0
 offset_right = -70.0
 offset_bottom = -52.0
 text = "Score : 0"
+metadata/_edit_use_anchors_ = true
 
 [node name="Label2" type="Label" parent="player/Camera2D2"]
 z_index = 2
@@ -37,23 +41,43 @@ Arrow Keys to Move"
 label_settings = SubResource("LabelSettings_3cebx")
 
 [node name="enemy1" parent="." instance=ExtResource("3_tytcy")]
-position = Vector2(31, 202)
+position = Vector2(72, 288)
 
 [node name="snack" parent="." instance=ExtResource("4_3cebx")]
-position = Vector2(-68, 95)
+position = Vector2(-12, 72)
 
 [node name="snack2" parent="." instance=ExtResource("4_3cebx")]
-position = Vector2(-90, 174)
+position = Vector2(-81, 149)
 monitorable = false
 
 [node name="snack3" parent="." instance=ExtResource("4_3cebx")]
-position = Vector2(94, 298)
+position = Vector2(22, 208)
 
 [node name="snack4" parent="." instance=ExtResource("4_3cebx")]
-position = Vector2(199, 199)
+position = Vector2(225, 184)
 
 [node name="snack5" parent="." instance=ExtResource("4_3cebx")]
 position = Vector2(219, 85)
 
 [node name="snack6" parent="." instance=ExtResource("4_3cebx")]
-position = Vector2(-11, 63)
+position = Vector2(82, 62)
+
+[node name="snack7" parent="." instance=ExtResource("4_3cebx")]
+position = Vector2(128, 208)
+
+[node name="snack8" parent="." instance=ExtResource("4_3cebx")]
+position = Vector2(-20, 272)
+
+[node name="snack9" parent="." instance=ExtResource("4_3cebx")]
+position = Vector2(260, 293)
+
+[node name="snack10" parent="." instance=ExtResource("4_3cebx")]
+position = Vector2(211, 323)
+
+[node name="spawner" parent="." instance=ExtResource("6_462ap")]
+position = Vector2(72, 168)
+
+[node name="enemy2" parent="." instance=ExtResource("3_tytcy")]
+position = Vector2(192, 264)
+
+[node name="Timer" type="Timer" parent="."]

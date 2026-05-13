@@ -9,7 +9,7 @@ var attack_ip = false
 
 @onready var coin_label = %Label
 
-const SPEED = 100
+const SPEED = 60
 var current_dir = "none"
 
 func _ready():
@@ -125,6 +125,8 @@ func attack():
 	if Input.is_action_just_pressed("attack"):
 		global.player_current_attack = true
 		attack_ip = true
+	
+	
 		
 		if dir == "right":
 			$AnimatedSprite2D.flip_h = false
@@ -155,6 +157,8 @@ func _on_playerhitbox_area_entered(body: Node2D) -> void:
 	if body.has_method("snack"):
 		set_count(coin_counter + 1)
 		print(coin_counter)
+		if health < 100:
+			health = health + 10
 
 func set_count(new_coin_count: int) -> void:
 	coin_counter = new_coin_count
@@ -170,10 +174,10 @@ func update_health():
 		healthbar.visible = true
 		
 	
-func _on_regin_timer_timeout():
-	if health < 100:
-		health = health + 20
-		if health > 100:
-			health = 100
-	if health <= 0:
-		health = 0
+#func _on_regin_timer_timeout():
+	#if health < 100:
+		#health = health + 20
+		#if health > 100:
+			#health = 100
+	#if health <= 0:
+		#health = 0

@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var speed = 55
+var speed = 50
 var player_chase = false
 var player = null
 
@@ -10,6 +10,7 @@ var can_take_damage = true
 
 func _physics_process(delta):
 	deal_with_damage()
+	update_health()
 	
 	if player_chase:
 		position += (player.position - position)/speed
@@ -51,3 +52,13 @@ func deal_with_damage():
 
 func _on_take_damage_cooldown_timeout() -> void:
 	can_take_damage = true
+	
+func update_health():
+	var healthbar = $healthbar
+	
+	healthbar.value = health
+	
+	if health >= 100:
+		healthbar.visible = false
+	else:
+		healthbar.visible = true
